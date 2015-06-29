@@ -1,0 +1,7 @@
+CryNTest.iml
+.idea/*
+.gradle/*
+build/*
+*.log
+gradlew
+gradlew.bat
