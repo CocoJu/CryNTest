@@ -10,13 +10,13 @@ repositories {
     mavenCentral()
 }
 
-String tomcat_home = "D:\\JAVA-DEV\\clean-tomcat-7.0.59"
+String tomcat_home = "D:\\JAVA-DEV\\tomcat7"
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
-task deploy (dependsOn: war){
+task deploy (dependsOn: [war, clean]){
     copy {
         from "build/libs"
         into "${tomcat_home}/webapps"
