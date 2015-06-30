@@ -1,0 +1,4 @@
+DROP database paydb;
+CREATE DATABASE IF NOT EXISTS `paydb`
+  DEFAULT CHARACTER SET = utf8
+  DEFAULT COLLATE = utf8_general_ci;

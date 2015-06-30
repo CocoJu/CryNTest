@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public final class JdbcConnector {
 
     private static final String CONNECTION_URL =
-            "jdbc:mysql://localhost:3306/price_db?useUnicode=yes&amp;characterEncoding=UTF-8";
+            "jdbc:mysql://localhost:3306/paydb?useUnicode=yes&amp;characterEncoding=UTF-8";
     private static final String USER = "root";
     private static final String PASSWORD = "";
     private Connection conn;
