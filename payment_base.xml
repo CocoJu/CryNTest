@@ -340,8 +340,14 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1054" ColName="house_adress" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="1054" ColName="adress" PrevColName="house_adress" Pos="1" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1429" ColName="count_floors" PrevColName="matherial" Pos="2" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
@@ -448,7 +454,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1078" ColName="user_name" PrevColName="passwd" Pos="1" idDatatype="20" DatatypeParams="(20)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="1078" ColName="user_name" PrevColName="passwd" Pos="1" idDatatype="20" DatatypeParams="(20)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
@@ -473,7 +479,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1085" Tablename="payments" PrevTableName="Table_06" XPos="295" YPos="272" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="10" >
+<TABLE ID="1085" Tablename="payments" PrevTableName="Table_06" XPos="398" YPos="266" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="10" >
 <COLUMNS>
 <COLUMN ID="1087" ColName="id_payment" PrevColName="id payment" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -528,6 +534,7 @@
 <RELATION ID="1091" RelationName="Rel_04" Kind="2" SrcTable="1045" DestTable="1085" FKFields="id_flat=flats_id_flat\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1093" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="11" />
 </RELATIONS>
 <NOTES>
+<NOTE ID="1427" NoteName="Note_01" XPos="788" YPos="176" NoteText="\243\237\232\234\224\235\252\237\238\229 \232\236\255 \239\238\235\252\231\238\226\224\242\229\235\255\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="12" />
 </NOTES>
 <IMAGES>
 </IMAGES>

@@ -13,11 +13,12 @@
 </head>
 <body>
 <div class="container">
-  <form role="form" class="navbar-form pull-left" action="addhouse/" accept-charset="UTF-8">
+  <form method="post" role="form" class="navbar-form pull-left" action="edit_house/" accept-charset="UTF-8">
+    <input name="action" value="add_house" style="display: none">
     <input name="adress" type="text"
            class="form-control span2" placeholder="адрес дома">
     <input name="count_floors" type="text"
-           class="form-control span2" placeholder="материал здания">
+           class="form-control span2" placeholder="количество этажей">
     <button type="submit" class="btn btn-default">Добавить</button>
   </form>
   <table class="table">
@@ -37,8 +38,14 @@
     <tr>
       <th><%= listHouses.getString("adress") %></th>
       <th><%= listHouses.getInt("count_floors") %></th>
-      <th><button type="submit" class="btn btn-default"
-              id="<%= listHouses.getString("id_house")%>">Submit</button></th>
+      <th>
+        <form method="post" role="form"  action="edit_house/" accept-charset="UTF-8">
+          <input name="action" value="delete_house" style="display: none">
+          <input name="house_id" value="<%= listHouses.getString("id_house")%>" style="display: none">
+          <%--<input type="button" class="btn btn-mini" value="<%= listHouses.getString("id_house")%>" >--%>
+          <button type="submit" class="btn btn-mini btn-dange">удалить</button>
+         <%-- <input type="button" class="btn btn-mini"  >--%>
+        </form>
     </tr>
     <%
       }
