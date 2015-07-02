@@ -5,23 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by df on 30.06.2015.
- */
-public class HouseManager {
+public class HouseManager extends DbManager{
 
-    private Connection conn;
     private final static String SELECT_ALL_HOUSES = "SELECT * FROM houses";
     private final static String INSERT_HOUSE = "INSERT INTO houses(adress, count_floors) VALUES(?,?)";
     private final static String DELETE_HOUSE = "DELETE FROM houses WHERE id_house = ?";
 
     public HouseManager(){
-        conn = JdbcConnector.newConnection();
+        super();
     }
 
     public void deleteHouse(int id){
         try {
-            System.out.println("------------------> delete user");
             PreparedStatement pstm = conn.prepareStatement(DELETE_HOUSE);
             pstm.setInt(1, id);
             pstm.execute();
@@ -50,13 +45,5 @@ public class HouseManager {
         }
     }
 
-    public void closeConnection(){
-        if(conn != null)
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
-    }
 }

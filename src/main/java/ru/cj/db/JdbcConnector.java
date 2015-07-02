@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by ANK on 29.06.2015.
- */
 public final class JdbcConnector {
 
     private static final String CONNECTION_URL =

@@ -1,5 +1,7 @@
 package ru.cj;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -18,5 +20,17 @@ public class Util {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static Cookie getCookieByName(HttpServletRequest request, String name) {
+        if (request.getCookies() == null) {
+            return null;
+        }
+        for (int i = 0; i < request.getCookies().length; i++) {
+            if (request.getCookies()[i].getName().equals(name)) {
+                return request.getCookies()[i];
+            }
+        }
+        return null;
     }
 }

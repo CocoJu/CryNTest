@@ -14,30 +14,44 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>EditHouse</servlet-name>
-        <servlet-class>ru.cj.servlets.HouseEditor</servlet-class>
+        <servlet-name>AddHouse</servlet-name>
+        <servlet-class>ru.cj.servlets.AddHouse</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EditHouse</servlet-name>
-        <url-pattern>/edit_house/</url-pattern>
+        <servlet-name>AddHouse</servlet-name>
+        <url-pattern>/add_house/</url-pattern>
     </servlet-mapping>
-    <!--
-        <welcome-file-list>
-            <welcome-file>/WEB-INF/login.jsp</welcome-file>
-        </welcomee-list>
 
-        <filter>
-            <filter-name>AuthorFilter</filter-name>
-            <filter-class>ru.cj.filters.AuthorizationFilter</filter-class>
-            <init-param>
-                <param-name>test-param</param-name>
-                <param-value>Initialization Paramter</param-value>
-            </init-param>
-        </filter>
+    <servlet>
+        <servlet-name>DelHouse</servlet-name>
+        <servlet-class>ru.cj.servlets.DelHouse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelHouse</servlet-name>
+        <url-pattern>/del_house/</url-pattern>
+    </servlet-mapping>
 
-        <filter-mapping>
-            <filter-name>AuthorFilter</filter-name>
-            <url-pattern>/*</url-pattern>
-        </filter-mapping>-->
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>ru.cj.filters.AuthFilter</filter-class>
+        <init-param>
+            <param-name>test-param</param-name>
+            <param-value>Initialization Paramter</param-value>
+        </init-param>
+    </filter>
 
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--<session-config>
+        <session-timeout>525600</session-timeout>
+        <cookie-config>
+            <max-age>31536000</max-age>
+        </cookie-config>
+    </session-config> -->
+
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

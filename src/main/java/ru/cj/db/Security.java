@@ -2,9 +2,6 @@ package ru.cj.db;
 
 import java.sql.*;
 
-/**
- * Created by ANK on 30.06.2015.
- */
 public class Security {
     public static int getUserRole(String login, String passwd){
         try {
