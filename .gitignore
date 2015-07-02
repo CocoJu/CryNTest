@@ -2,6 +2,7 @@ CryNTest.iml
 .idea/*
 .gradle/*
 build/*
+out/*
 *.log
 gradlew
 gradlew.bat
