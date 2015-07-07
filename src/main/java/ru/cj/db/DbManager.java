@@ -1,5 +1,7 @@
 package ru.cj.db;
 
+import ru.cj.db.jdbc.JdbcConnector;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 

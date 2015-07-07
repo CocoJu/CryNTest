@@ -1,4 +1,4 @@
-package ru.cj.db;
+package ru.cj.db.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

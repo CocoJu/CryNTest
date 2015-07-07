@@ -2,6 +2,9 @@ package ru.cj.servlets;
 
 import ru.cj.Util;
 import ru.cj.db.HouseManager;
+import ru.cj.db.jdbc.JdbcDbManager;
+import ru.cj.db.manage.DbManagerI;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
