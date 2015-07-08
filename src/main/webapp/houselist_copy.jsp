@@ -1,12 +1,9 @@
-<%@ page import="ru.cj.db.DbManagerI" %>
-<%@ page import="ru.cj.db.jdbc.JdbcDbManager" %>
-<%@ page import="ru.cj.db.dao.House" %>
-<%@ page import="java.util.List" %>
-<%--<%@ taglib prefix="tagFiles" tagdir="/WEB-INF/tags.tld" %>--%>
+<%@ page import="ru.cj.db.HouseManager" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="ru.cj.Util" %>
 
-- See more at: http://www.javabeat.net/custom-tags-in-jsp-2-0/#sthash.Kz14bZyf.dpuf
 <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -33,20 +30,24 @@
     </tr>
     </thead>
     <tbody>
-    <% DbManagerI dbMan = new JdbcDbManager();
-      List<House> list = dbMan.getAllHouses();
-      %>
-      <c:set var="list" value="<%=list%>"/>
-      <c:forEach items="${list}" var="house" >
-        <tr>
-          <th><c:out value="${house.getAddress()}"/></th>
-          <th><c:out value="${house.getCountFloors()}"/></th>
-          <%--<th>
-            <a class="btn btn-default"
-               href="<%= Util.APP_URL%>/del_house/?id=<%= listHouses.getInt("id_house") %>">удалить</a>
-          </th>--%>
-        </tr>
-      </c:forEach>
+    <%
+      HouseManager hm = new HouseManager();
+      hm.openConnection();
+      ResultSet listHouses = hm.getAllHouses();
+      while(listHouses.next()){
+    %>
+    <tr>
+      <th><%= listHouses.getString("adress") %></th>
+      <th><%= listHouses.getInt("count_floors") %></th>
+      <th>
+          <a class="btn btn-default"
+             href="<%= Util.APP_URL%>/del_house/?id=<%= listHouses.getInt("id_house") %>">удалить</a>
+      </th>
+    </tr>
+    <%
+      }
+      hm.closeConnection();
+    %>
     </tbody>
   </table>
 </div>

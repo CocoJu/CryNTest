@@ -1,12 +1,16 @@
 package ru.cj.db.jdbc;
 
-import ru.cj.db.HouseManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ru.cj.db.dao.House;
-import ru.cj.db.manage.DbManagerI;
+import ru.cj.db.DbManagerI;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,42 +21,77 @@ public class JdbcDbManager implements DbManagerI{
     private final static String SELECT_ALL_HOUSES = "SELECT * FROM houses";
     private final static String INSERT_HOUSE = "INSERT INTO houses(adress, count_floors) VALUES(?,?)";
     private final static String DELETE_HOUSE = "DELETE FROM houses WHERE id_house = ?";
-
     private Connection connection;
 
-    public JdbcDbManager(){
+    private Logger log = LoggerFactory.getLogger("SYSOUT");
+
+    public JdbcDbManager() {
+        log.info("jdbc is construct! ");
     }
 
-    static class House implements HouseManagerI{
-
-        public List<House> getAllHouses(){
+    public List<House> getAllHouses() {
+        try {
+            openConnection();
+            ResultSet resultSetHouses = connection.createStatement().executeQuery(SELECT_ALL_HOUSES);
+            List<House> houseList = new ArrayList<House>();
+            while(resultSetHouses.next()){
+                House house = new House();
+                house.setId(resultSetHouses.getInt("id_house"));
+                house.setAddress(resultSetHouses.getString("adress"));
+                house.setCountFloors(resultSetHouses.getInt("count_floors"));
+                houseList.add(house);
+                log.info(resultSetHouses.getString("adress"));
+            }
+        return houseList;
+        } catch (SQLException e) {
+            e.printStackTrace();
             return null;
+        }finally {
+            closeConnection();
         }
+    }
 
-        public void deleteHouse(int id) throws SQLException {
-            PreparedStatement pstm = connection.prepareStatement(DELETE_HOUSE);
+    public void deleteHouse(int id) {
+        openConnection();
+        PreparedStatement pstm = null;
+        try {
+            pstm = connection.prepareStatement(DELETE_HOUSE);
             pstm.setInt(1, id);
             pstm.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            closeConnection();
         }
 
-        public void deleteHouse(ru.cj.dao.House house) throws SQLException {
-            deleteHouse(house.getId());
-        }
+    }
 
-
-        public void insertHouse(String adress, int countFloors) {
-
+    public void insertHouse(String adress, int countFloors) {
+        try {
+            openConnection();
+            PreparedStatement pstm = connection.prepareStatement(INSERT_HOUSE);
+            pstm.setString(1, adress);
+            pstm.setInt(2, countFloors);
+            pstm.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            closeConnection();
         }
     }
 
-    public DbManagerI openConnection() {
+    private void openConnection() {
+        log.info("open connection!");
         if(connection == null)
             connection = JdbcConnector.newConnection();
-        return this;
     }
 
-    public void closeConnection() throws SQLException {
-        connection.close();
+    private void closeConnection(){
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

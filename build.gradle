@@ -30,6 +30,10 @@ repositories {
 
 dependencies {
     compile 'mysql:mysql-connector-java:5.1.35'
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'org.slf4j:slf4j-simple:1.7.12'
     providedCompile 'javax.servlet:servlet-api:2.5'
-    runtime 'javax.servlet:jstl:1.1.2'
+    compile 'jstl:jstl:1.2'
+    //providedCompile 'javax.servlet:servlet-api:3.1.0'
+    //runtime 'javax.servlet:jstl:1.1.2'
 }
