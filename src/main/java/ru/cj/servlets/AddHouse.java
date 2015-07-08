@@ -1,8 +1,8 @@
 package ru.cj.servlets;
 
 import ru.cj.Util;
-import ru.cj.db.HouseManager;
-
+import ru.cj.db.DbManager;
+import ru.cj.db.DbManagerFactory;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,10 +18,8 @@ public class AddHouse extends HttpServlet{
         String adress = request.getParameter("adress");
         String count_floors = request.getParameter("count_floors");
         if(adress != null && count_floors != null){
-            HouseManager hm = new HouseManager();
-            hm.openConnection();
-            hm.insertHouse(Util.encode(adress), Integer.parseInt(count_floors));
-            hm.closeConnection();
+            DbManagerFactory.newInstance()
+                    .insertHouse(adress, Integer.parseInt(count_floors));
         }
         try {
             response.sendRedirect(Util.APP_URL + "/houselist.jsp");

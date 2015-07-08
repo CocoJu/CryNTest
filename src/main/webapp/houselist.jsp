@@ -1,13 +1,13 @@
-<%@ page import="ru.cj.db.DbManagerI" %>
+<%@ page import="ru.cj.db.DbManager" %>
 <%@ page import="ru.cj.db.jdbc.JdbcDbManager" %>
 <%@ page import="ru.cj.db.dao.House" %>
 <%@ page import="java.util.List" %>
-<%--<%@ taglib prefix="tagFiles" tagdir="/WEB-INF/tags.tld" %>--%>
+<%@ page import="ru.cj.db.DbManagerFactory" %>
 
-- See more at: http://www.javabeat.net/custom-tags-in-jsp-2-0/#sthash.Kz14bZyf.dpuf
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <html>
 <head>
   <title>список домов</title>
@@ -33,18 +33,18 @@
     </tr>
     </thead>
     <tbody>
-    <% DbManagerI dbMan = new JdbcDbManager();
-      List<House> list = dbMan.getAllHouses();
-      %>
-      <c:set var="list" value="<%=list%>"/>
-      <c:forEach items="${list}" var="house" >
+    <%
+        List<House> houseList = DbManagerFactory.newInstance().getAllHouses();
+        request.setAttribute("houseList", houseList);%>
+      <c:forEach items="${requestScope.houseList}" var="house" >
         <tr>
           <th><c:out value="${house.getAddress()}"/></th>
           <th><c:out value="${house.getCountFloors()}"/></th>
-          <%--<th>
+          <th>
+            <c:set var="appUrl" value="${ru.cj.Util.APP_URL}"/>
             <a class="btn btn-default"
-               href="<%= Util.APP_URL%>/del_house/?id=<%= listHouses.getInt("id_house") %>">удалить</a>
-          </th>--%>
+               href=" <c:url value="${appUrl}/del_house/?id=${house.getId()}"/> ">удалить</a>
+          </th>
         </tr>
       </c:forEach>
     </tbody>

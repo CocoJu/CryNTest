@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.cj.db.dao.House;
-import ru.cj.db.DbManagerI;
+import ru.cj.db.DbManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by df on 07.07.2015.
  */
-public class JdbcDbManager implements DbManagerI{
+public class JdbcDbManager implements DbManager {
 
     private final static String SELECT_ALL_HOUSES = "SELECT * FROM houses";
     private final static String INSERT_HOUSE = "INSERT INTO houses(adress, count_floors) VALUES(?,?)";
@@ -66,11 +66,11 @@ public class JdbcDbManager implements DbManagerI{
 
     }
 
-    public void insertHouse(String adress, int countFloors) {
+    public void insertHouse(String address, int countFloors) {
         try {
             openConnection();
             PreparedStatement pstm = connection.prepareStatement(INSERT_HOUSE);
-            pstm.setString(1, adress);
+            pstm.setString(1, address);
             pstm.setInt(2, countFloors);
             pstm.execute();
         } catch (SQLException e) {

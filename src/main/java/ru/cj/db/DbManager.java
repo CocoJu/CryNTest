@@ -1,30 +1,18 @@
 package ru.cj.db;
 
-import ru.cj.db.jdbc.JdbcConnector;
+import ru.cj.db.dao.House;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.List;
 
 /**
- * Created by df on 02.07.2015.
+ * Created by df on 07.07.2015.
  */
-class DbManager {
+public interface DbManager {
 
-    protected Connection conn;
+    public List<House> getAllHouses();
 
-    public DbManager(){}
+    public void deleteHouse(int id);
 
-    public void openConnection(){
-        if(this.conn==null)
-            this.conn = JdbcConnector.newConnection();
-    };
+    public void insertHouse(String address, int countFloors);
 
-    public void closeConnection(){
-        if(conn != null)
-            try {
-                this.conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-    }
 }

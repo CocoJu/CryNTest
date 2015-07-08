@@ -1,7 +1,7 @@
 package ru.cj.servlets;
 
 import ru.cj.Util;
-import ru.cj.db.HouseManager;
+import ru.cj.db.DbManagerFactory;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +16,8 @@ public class DelHouse extends HttpServlet{
                        HttpServletResponse response){
         String id = request.getParameter("id");
         if(id != null){
-            HouseManager hm = new HouseManager();
-            hm.openConnection();
-            hm.deleteHouse(Integer.parseInt(id));
-            hm.closeConnection();
+            DbManagerFactory.newInstance()
+                    .deleteHouse(Integer.parseInt(id));
         }
         try {
             response.sendRedirect(Util.APP_URL + "/houselist.jsp");
