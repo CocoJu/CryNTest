@@ -20,7 +20,7 @@ public class LoginController extends HttpServlet {
         username = request.getParameter("username");
         pwd = request.getParameter("password");
         int role = Security.getUserRole(username, pwd);
-        if(role > 0){
+        if(role > Security.NO_AUTHORY){
             HttpSession session = request.getSession(true);
             session.setAttribute("user", username);
             session.setAttribute("role", role);

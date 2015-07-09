@@ -4,7 +4,15 @@ import ru.cj.db.jdbc.JdbcConnector;
 
 import java.sql.*;
 
+
+
 public class Security {
+
+    public static final int NO_AUTHORY = 0;
+    public static final int USER_ROLE = 1;
+    public static final int ADMIN_ROLE = 2;
+
+
     public static int getUserRole(String login, String passwd){
         try {
             Connection conn = JdbcConnector.newConnection();
@@ -21,7 +29,7 @@ public class Security {
             return userRole;
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            return NO_AUTHORY;
         }
 
     };

@@ -1,5 +1,3 @@
-<%@ page import="ru.cj.db.DbManager" %>
-<%@ page import="ru.cj.db.jdbc.JdbcDbManager" %>
 <%@ page import="ru.cj.db.dao.House" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ru.cj.db.DbManagerFactory" %>

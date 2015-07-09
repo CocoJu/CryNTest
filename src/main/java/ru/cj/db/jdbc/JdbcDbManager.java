@@ -22,11 +22,10 @@ public class JdbcDbManager implements DbManager {
     private final static String INSERT_HOUSE = "INSERT INTO houses(adress, count_floors) VALUES(?,?)";
     private final static String DELETE_HOUSE = "DELETE FROM houses WHERE id_house = ?";
     private Connection connection;
-
     private Logger log = LoggerFactory.getLogger("SYSOUT");
 
     public JdbcDbManager() {
-        log.info("jdbc is construct! ");
+        log.info("jdb construct! ");
     }
 
     public List<House> getAllHouses() {
